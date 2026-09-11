@@ -1,411 +1,706 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulado - Concursos Públicos Angola</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding: 0;
-      color: #222;
-    }
+<title>Rumo à Vaga — Simulados</title>
 
-    header {
-      background: #123c69;
-      color: white;
-      padding: 25px 15px;
-      text-align: center;
-    }
+<style>
+*{box-sizing:border-box}
 
-    header h1 {
-      margin: 0;
-      font-size: 26px;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f8;
+  color:#222;
+}
 
-    header p {
-      margin: 8px 0 0;
-    }
+header{
+  background:#123c69;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+}
 
-    .container {
-      max-width: 800px;
-      margin: 25px auto;
-      padding: 15px;
-    }
+header h1{
+  margin:0;
+  font-size:28px;
+}
 
-    .question {
-      background: white;
-      padding: 20px;
-      margin-bottom: 18px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+header p{
+  margin:8px 0 0;
+}
 
-    .question h3 {
-      margin-top: 0;
-    }
+.container{
+  max-width:850px;
+  margin:auto;
+  padding:20px;
+}
 
-    label {
-      display: block;
-      padding: 10px;
-      margin: 7px 0;
-      background: #f1f3f5;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+.card{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
-    label:hover {
-      background: #e2e6ea;
-    }
+h2,h3{
+  margin-top:0;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      background: #198754;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+select,
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
 
-    button:hover {
-      background: #146c43;
-    }
+button{
+  background:#198754;
+  color:white;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    #resultado {
-      margin-top: 20px;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      display: none;
-    }
-  </style>
+button:hover{
+  background:#146c43;
+}
+
+.question{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.option{
+  display:block;
+  background:#f1f3f5;
+  padding:12px;
+  margin:8px 0;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.option:hover{
+  background:#e2e6ea;
+}
+
+.timer{
+  position:sticky;
+  top:0;
+  background:#fff;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+#teste,
+#resultado{
+  display:none;
+}
+
+.correct{
+  background:#d1e7dd!important;
+}
+
+.wrong{
+  background:#f8d7da!important;
+}
+
+.badge{
+  display:inline-block;
+  background:#ffd43b;
+  padding:6px 12px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+.small{
+  color:#666;
+  font-size:14px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Simulado de Concursos Públicos</h1>
-  <p>Teste os seus conhecimentos</p>
+  <h1>🎯 Rumo à Vaga</h1>
+  <p>Prepare-se hoje. Conquiste a sua vaga amanhã.</p>
 </header>
 
 <div class="container">
 
-  <div class="question">
-    <h3>1. Qual é a capital de Angola?</h3>
+<!-- MENU -->
+<div id="menu" class="card">
 
-    <label>
-      <input type="radio" name="q1" value="A">
-      A) Benguela
-    </label>
+<h2>🧠 Escolha o seu treino</h2>
 
-    <label>
-      <input type="radio" name="q1" value="B">
-      B) Luanda
-    </label>
+<p>Selecione o nível e a categoria para começar.</p>
 
-    <label>
-      <input type="radio" name="q1" value="C">
-      C) Huambo
-    </label>
+<label>Nível</label>
 
-    <label>
-      <input type="radio" name="q1" value="D">
-      D) Malanje
-    </label>
-  </div>
+<select id="nivel">
+  <option value="iniciante">🟢 Iniciante</option>
+  <option value="intermedio">🟡 Intermédio</option>
+  <option value="avancado">🔴 Avançado</option>
+</select>
 
+<label>Categoria</label>
 
-  <div class="question">
-    <h3>2. Quanto é 15 × 4?</h3>
+<select id="categoria">
+  <option value="todas">Todas</option>
+  <option value="logica">Raciocínio Lógico</option>
+  <option value="matematica">Matemática</option>
+  <option value="portugues">Português</option>
+  <option value="cultura">Cultura Geral</option>
+  <option value="administracao">Administração Pública</option>
+  <option value="etica">Ética</option>
+</select>
 
-    <label>
-      <input type="radio" name="q2" value="A">
-      A) 45
-    </label>
+<button onclick="iniciarTeste()">
+🚀 COMEÇAR SIMULADO
+</button>
 
-    <label>
-      <input type="radio" name="q2" value="B">
-      B) 50
-    </label>
-
-    <label>
-      <input type="radio" name="q2" value="C">
-      C) 60
-    </label>
-
-    <label>
-      <input type="radio" name="q2" value="D">
-      D) 75
-    </label>
-  </div>
+</div>
 
 
-  <div class="question">
-    <h3>3. Qual destas é uma função do Estado?</h3>
+<!-- TESTE -->
+<div id="teste">
 
-    <label>
-      <input type="radio" name="q3" value="A">
-      A) Garantir a segurança dos cidadãos
-    </label>
+<div class="timer">
+⏱️ Tempo restante: <span id="tempo">00:00</span>
+</div>
 
-    <label>
-      <input type="radio" name="q3" value="B">
-      B) Vender produtos particulares
-    </label>
+<div id="perguntas"></div>
 
-    <label>
-      <input type="radio" name="q3" value="C">
-      C) Administrar empresas privadas
-    </label>
+<button onclick="finalizarTeste()">
+FINALIZAR SIMULADO
+</button>
 
-    <label>
-      <input type="radio" name="q3" value="D">
-      D) Organizar festas particulares
-    </label>
-  </div>
+</div>
 
 
-  <div class="question">
-    <h3>4. Complete a sequência: 2, 4, 6, 8, ___</h3>
-
-    <label>
-      <input type="radio" name="q4" value="A">
-      A) 9
-    </label>
-
-    <label>
-      <input type="radio" name="q4" value="B">
-      B) 10
-    </label>
-
-    <label>
-      <input type="radio" name="q4" value="C">
-      C) 12
-    </label>
-
-    <label>
-      <input type="radio" name="q4" value="D">
-      D) 14
-    </label>
-  </div>
-
-
-  <div class="question">
-    <h3>5. Qual é o órgão responsável pela elaboração das leis em Angola?</h3>
-
-    <label>
-      <input type="radio" name="q5" value="A">
-      A) Assembleia Nacional
-    </label>
-
-    <label>
-      <input type="radio" name="q5" value="B">
-      B) Polícia Nacional
-    </label>
-
-    <label>
-      <input type="radio" name="q5" value="C">
-      C) Banco Nacional de Angola
-    </label>
-
-    <label>
-      <input type="radio" name="q5" value="D">
-      D) Tribunal Supremo
-    </label>
-  </div>
-
-
-  <div class="question">
-    <h3>6. Qual palavra é sinónimo de "rápido"?</h3>
-
-    <label>
-      <input type="radio" name="q6" value="A">
-      A) Lento
-    </label>
-
-    <label>
-      <input type="radio" name="q6" value="B">
-      B) Veloz
-    </label>
-
-    <label>
-      <input type="radio" name="q6" value="C">
-      C) Fraco
-    </label>
-
-    <label>
-      <input type="radio" name="q6" value="D">
-      D) Distante
-    </label>
-  </div>
-
-
-  <div class="question">
-    <h3>7. Se 20% de 100 é quanto?</h3>
-
-    <label>
-      <input type="radio" name="q7" value="A">
-      A) 10
-    </label>
-
-    <label>
-      <input type="radio" name="q7" value="B">
-      B) 15
-    </label>
-
-    <label>
-      <input type="radio" name="q7" value="C">
-      C) 20
-    </label>
-
-    <label>
-      <input type="radio" name="q7" value="D">
-      D) 25
-    </label>
-  </div>
-
-
-  <div class="question">
-    <h3>8. Qual destas atitudes demonstra ética profissional?</h3>
-
-    <label>
-      <input type="radio" name="q8" value="A">
-      A) Falsificar documentos
-    </label>
-
-    <label>
-      <input type="radio" name="q8" value="B">
-      B) Cumprir as responsabilidades
-    </label>
-
-    <label>
-      <input type="radio" name="q8" value="C">
-      C) Divulgar informações confidenciais
-    </label>
-
-    <label>
-      <input type="radio" name="q8" value="D">
-      D) Chegar sempre atrasado
-    </label>
-  </div>
-
-
-  <div class="question">
-    <h3>9. Complete: 5, 10, 15, 20, ___</h3>
-
-    <label>
-      <input type="radio" name="q9" value="A">
-      A) 21
-    </label>
-
-    <label>
-      <input type="radio" name="q9" value="B">
-      B) 23
-    </label>
-
-    <label>
-      <input type="radio" name="q9" value="C">
-      C) 25
-    </label>
-
-    <label>
-      <input type="radio" name="q9" value="D">
-      D) 30
-    </label>
-  </div>
-
-
-  <div class="question">
-    <h3>10. Qual é a língua oficial de Angola?</h3>
-
-    <label>
-      <input type="radio" name="q10" value="A">
-      A) Inglês
-    </label>
-
-    <label>
-      <input type="radio" name="q10" value="B">
-      B) Francês
-    </label>
-
-    <label>
-      <input type="radio" name="q10" value="C">
-      C) Português
-    </label>
-
-    <label>
-      <input type="radio" name="q10" value="D">
-      D) Espanhol
-    </label>
-  </div>
-
-
-  <button onclick="corrigir()">FINALIZAR SIMULADO</button>
-
-  <div id="resultado"></div>
+<!-- RESULTADO -->
+<div id="resultado" class="card"></div>
 
 </div>
 
 
 <script>
 
-function corrigir() {
+/* =====================================================
+   BANCO DE PERGUNTAS
+===================================================== */
 
-  const respostas = {
-    q1: "B",
-    q2: "C",
-    q3: "A",
-    q4: "B",
-    q5: "A",
-    q6: "B",
-    q7: "C",
-    q8: "B",
-    q9: "C",
-    q10: "C"
-  };
+const banco = [
 
-  let pontos = 0;
+/* LÓGICA */
 
-  for (let pergunta in respostas) {
+{
+pergunta:"Complete a sequência: 2, 4, 6, 8, ___",
+opcoes:["9","10","12","14"],
+resposta:1,
+nivel:"iniciante",
+categoria:"logica",
+explicacao:"A sequência aumenta sempre 2 unidades. Portanto, depois de 8 vem 10."
+},
 
-    const selecionada = document.querySelector(
-      'input[name="' + pergunta + '"]:checked'
+{
+pergunta:"Complete: 5, 10, 15, 20, ___",
+opcoes:["21","23","25","30"],
+resposta:2,
+nivel:"iniciante",
+categoria:"logica",
+explicacao:"A sequência aumenta de 5 em 5."
+},
+
+{
+pergunta:"Se todos os funcionários são trabalhadores e João é funcionário, então João é:",
+opcoes:["Estudante","Trabalhador","Professor","Empresário"],
+resposta:1,
+nivel:"intermedio",
+categoria:"logica",
+explicacao:"Se todos os funcionários são trabalhadores e João é funcionário, João pertence ao grupo dos trabalhadores."
+},
+
+/* MATEMÁTICA */
+
+{
+pergunta:"Quanto é 15 × 4?",
+opcoes:["45","50","60","75"],
+resposta:2,
+nivel:"iniciante",
+categoria:"matematica",
+explicacao:"15 × 4 = 60."
+},
+
+{
+pergunta:"Quanto é 20% de 100?",
+opcoes:["10","15","20","25"],
+resposta:2,
+nivel:"iniciante",
+categoria:"matematica",
+explicacao:"20% de 100 corresponde a 20."
+},
+
+{
+pergunta:"Um produto custa 10.000 Kz e recebe um desconto de 10%. Qual será o preço final?",
+opcoes:["8.000 Kz","9.000 Kz","9.500 Kz","10.100 Kz"],
+resposta:1,
+nivel:"intermedio",
+categoria:"matematica",
+explicacao:"10% de 10.000 Kz é 1.000 Kz. Portanto: 10.000 - 1.000 = 9.000 Kz."
+},
+
+/* PORTUGUÊS */
+
+{
+pergunta:"Qual palavra é sinónimo de 'rápido'?",
+opcoes:["Lento","Veloz","Fraco","Distante"],
+resposta:1,
+nivel:"iniciante",
+categoria:"portugues",
+explicacao:"Veloz significa rápido."
+},
+
+{
+pergunta:"Qual é a forma correta?",
+opcoes:[
+"Os funcionário chegou cedo.",
+"Os funcionários chegou cedo.",
+"Os funcionários chegaram cedo.",
+"Os funcionário chegaram cedo."
+],
+resposta:2,
+nivel:"intermedio",
+categoria:"portugues",
+explicacao:"O sujeito 'os funcionários' está no plural, por isso o verbo deve ser 'chegaram'."
+},
+
+/* CULTURA */
+
+{
+pergunta:"Qual é a capital de Angola?",
+opcoes:["Benguela","Luanda","Huambo","Malanje"],
+resposta:1,
+nivel:"iniciante",
+categoria:"cultura",
+explicacao:"Luanda é a capital de Angola."
+},
+
+{
+pergunta:"Qual é a língua oficial de Angola?",
+opcoes:["Inglês","Francês","Português","Espanhol"],
+resposta:2,
+nivel:"iniciante",
+categoria:"cultura",
+explicacao:"A língua oficial de Angola é o português."
+},
+
+/* ADMINISTRAÇÃO */
+
+{
+pergunta:"Qual destas é uma função essencial do Estado?",
+opcoes:[
+"Garantir a segurança dos cidadãos",
+"Vender produtos particulares",
+"Organizar festas privadas",
+"Administrar todas as empresas privadas"
+],
+resposta:0,
+nivel:"iniciante",
+categoria:"administracao",
+explicacao:"A garantia da segurança dos cidadãos integra as funções fundamentais do Estado."
+},
+
+{
+pergunta:"Qual princípio está associado à atuação da Administração Pública?",
+opcoes:[
+"Arbitrariedade",
+"Legalidade",
+"Favoritismo",
+"Segredo absoluto"
+],
+resposta:1,
+nivel:"intermedio",
+categoria:"administracao",
+explicacao:"A Administração Pública deve atuar de acordo com a lei, respeitando o princípio da legalidade."
+},
+
+/* ÉTICA */
+
+{
+pergunta:"Qual atitude demonstra ética profissional?",
+opcoes:[
+"Falsificar documentos",
+"Cumprir as responsabilidades",
+"Divulgar informações confidenciais",
+"Chegar sempre atrasado"
+],
+resposta:1,
+nivel:"iniciante",
+categoria:"etica",
+explicacao:"Cumprir as responsabilidades demonstra profissionalismo e ética."
+},
+
+{
+pergunta:"Um funcionário recebe uma informação confidencial. O comportamento adequado é:",
+opcoes:[
+"Publicá-la nas redes sociais",
+"Partilhá-la com amigos",
+"Preservar a confidencialidade",
+"Vendê-la"
+],
+resposta:2,
+nivel:"intermedio",
+categoria:"etica",
+explicacao:"Informações confidenciais devem ser protegidas e utilizadas de acordo com as regras aplicáveis."
+}
+
+];
+
+
+/* =====================================================
+   VARIÁVEIS
+===================================================== */
+
+let perguntasAtuais = [];
+let tempoRestante = 0;
+let intervalo;
+let pontos = 0;
+let xp = 0;
+
+
+/* =====================================================
+   INICIAR TESTE
+===================================================== */
+
+function iniciarTeste(){
+
+  const nivel =
+    document.getElementById("nivel").value;
+
+  const categoria =
+    document.getElementById("categoria").value;
+
+  perguntasAtuais = banco.filter(p => {
+
+    const nivelOk = p.nivel === nivel;
+
+    const categoriaOk =
+      categoria === "todas" ||
+      p.categoria === categoria;
+
+    return nivelOk && categoriaOk;
+
+  });
+
+  if(perguntasAtuais.length === 0){
+
+    alert(
+      "Ainda não existem perguntas suficientes para esta combinação. Escolha outra categoria."
     );
 
-    if (selecionada && selecionada.value === respostas[pergunta]) {
-      pontos++;
+    return;
+  }
+
+  /* Embaralhar */
+
+  perguntasAtuais.sort(() => Math.random() - 0.5);
+
+  /*
+    No futuro teremos:
+    Iniciante = mais tempo
+    Intermédio = tempo médio
+    Avançado = pouco tempo
+  */
+
+  if(nivel === "iniciante"){
+    tempoRestante = perguntasAtuais.length * 60;
+  }
+
+  if(nivel === "intermedio"){
+    tempoRestante = perguntasAtuais.length * 45;
+  }
+
+  if(nivel === "avancado"){
+    tempoRestante = perguntasAtuais.length * 30;
+  }
+
+  document.getElementById("menu").style.display="none";
+
+  document.getElementById("teste").style.display="block";
+
+  mostrarPerguntas();
+
+  iniciarCronometro();
+
+}
+
+
+/* =====================================================
+   MOSTRAR PERGUNTAS
+===================================================== */
+
+function mostrarPerguntas(){
+
+  const area =
+    document.getElementById("perguntas");
+
+  area.innerHTML="";
+
+  perguntasAtuais.forEach((p,index)=>{
+
+    let html = `
+      <div class="question">
+
+      <h3>
+      ${index+1}. ${p.pergunta}
+      </h3>
+    `;
+
+    p.opcoes.forEach((opcao,i)=>{
+
+      html += `
+        <label class="option">
+          <input
+            type="radio"
+            name="q${index}"
+            value="${i}"
+          >
+          ${String.fromCharCode(65+i)}) ${opcao}
+        </label>
+      `;
+
+    });
+
+    html += "</div>";
+
+    area.innerHTML += html;
+
+  });
+
+}
+
+
+/* =====================================================
+   CRONÓMETRO
+===================================================== */
+
+function iniciarCronometro(){
+
+  atualizarTempo();
+
+  intervalo = setInterval(()=>{
+
+    tempoRestante--;
+
+    atualizarTempo();
+
+    if(tempoRestante <= 0){
+
+      clearInterval(intervalo);
+
+      alert("⏰ O tempo terminou!");
+
+      finalizarTeste();
+
     }
+
+  },1000);
+
+}
+
+
+function atualizarTempo(){
+
+  const minutos =
+    Math.floor(tempoRestante / 60);
+
+  const segundos =
+    tempoRestante % 60;
+
+  document.getElementById("tempo").innerText =
+    String(minutos).padStart(2,"0")
+    + ":" +
+    String(segundos).padStart(2,"0");
+
+}
+
+
+/* =====================================================
+   FINALIZAR
+===================================================== */
+
+function finalizarTeste(){
+
+  clearInterval(intervalo);
+
+  pontos=0;
+
+  perguntasAtuais.forEach((p,index)=>{
+
+    const resposta =
+      document.querySelector(
+        `input[name="q${index}"]:checked`
+      );
+
+    if(resposta &&
+       Number(resposta.value) === p.resposta){
+
+      pontos++;
+
+    }
+
+  });
+
+  const total =
+    perguntasAtuais.length;
+
+  const percentagem =
+    Math.round((pontos/total)*100);
+
+  xp += pontos * 10;
+
+  let mensagem="";
+
+  if(percentagem >= 80){
+
+    mensagem =
+      "🏆 Excelente! O seu desempenho está muito bom.";
+
+  }else if(percentagem >= 60){
+
+    mensagem =
+      "👏 Bom trabalho! Continue a treinar.";
+
+  }else{
+
+    mensagem =
+      "📚 Continue a estudar. A prática melhora o desempenho.";
+
   }
 
-  const percentagem = (pontos / 10) * 100;
 
-  let mensagem = "";
+  document.getElementById("teste").style.display="none";
 
-  if (percentagem >= 70) {
-    mensagem = "🎉 Excelente! Está no caminho certo.";
-  } else if (percentagem >= 50) {
-    mensagem = "👍 Bom esforço! Continue a estudar.";
-  } else {
-    mensagem = "📚 Precisa estudar mais. Não desista!";
-  }
+  const resultado =
+    document.getElementById("resultado");
 
-  const resultado = document.getElementById("resultado");
+  resultado.style.display="block";
 
-  resultado.style.display = "block";
+  resultado.innerHTML = `
 
-  resultado.innerHTML =
-    "Resultado: " + pontos + "/10<br>" +
-    percentagem + "%<br><br>" +
-    mensagem;
+    <h2>🎯 Resultado</h2>
+
+    <p>
+      Você acertou
+      <strong>${pontos}</strong>
+      de
+      <strong>${total}</strong>
+      questões.
+    </p>
+
+    <p>
+      📊 Aproveitamento:
+      <strong>${percentagem}%</strong>
+    </p>
+
+    <p>
+      ⭐ XP ganho:
+      <strong>+${pontos*10}</strong>
+    </p>
+
+    <p>
+      ⭐ XP total:
+      <strong>${xp}</strong>
+    </p>
+
+    <hr>
+
+    <h3>${mensagem}</h3>
+
+    <button onclick="mostrarExplicacoes()">
+      💡 VER EXPLICAÇÕES
+    </button>
+
+    <button onclick="location.reload()">
+      🔄 NOVO SIMULADO
+    </button>
+
+  `;
+
+}
+
+
+/* =====================================================
+   EXPLICAÇÕES
+===================================================== */
+
+function mostrarExplicacoes(){
+
+  const resultado =
+    document.getElementById("resultado");
+
+  let html =
+    "<h2>💡 Explicações</h2>";
+
+  perguntasAtuais.forEach((p,index)=>{
+
+    const resposta =
+      document.querySelector(
+        `input[name="q${index}"]:checked`
+      );
+
+    const acertou =
+      resposta &&
+      Number(resposta.value) === p.resposta;
+
+    html += `
+
+      <div class="question">
+
+        <h3>
+        ${index+1}. ${p.pergunta}
+        </h3>
+
+        <p>
+        <strong>
+        Resposta correta:
+        </strong>
+        ${String.fromCharCode(65+p.resposta)})
+        ${p.opcoes[p.resposta]}
+        </p>
+
+        <p>
+        ${acertou ? "✅ Você acertou." : "❌ Você errou."}
+        </p>
+
+        <p>
+        📚 ${p.explicacao}
+        </p>
+
+      </div>
+
+    `;
+
+  });
+
+  resultado.innerHTML += html;
+
 }
 
 </script>
