@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rumo à Vaga — Polícia | Psicotécnico Avançado</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#f2f4f7;
+    color:#17202a;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+}
+
+header p{
+    margin:8px 0 0;
+}
+
+.container{
+    max-width:850px;
+    margin:20px auto;
+    padding:15px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:14px;
+    margin-bottom:18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+select,button{
+    width:100%;
+    padding:13px;
+    margin-top:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+button{
+    background:#111827;
+    color:white;
+    cursor:pointer;
+    border:none;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.question{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.option{
+    display:block;
+    width:100%;
+    text-align:left;
+    margin:8px 0;
+    background:#f8fafc;
+    color:#17202a;
+    border:1px solid #d1d5db;
+}
+
+.option:hover{
+    background:#e5e7eb;
+}
+
+.info{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+.timer{
+    font-size:22px;
+    text-align:center;
+    margin:10px 0;
+}
+
+.progress{
+    height:10px;
+    background:#ddd;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:20px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#111827;
+}
+
+.hidden{
+    display:none;
+}
+
+.correct{
+    background:#dcfce7!important;
+    border-color:#16a34a!important;
+}
+
+.wrong{
+    background:#fee2e2!important;
+    border-color:#dc2626!important;
+}
+
+.result{
+    text-align:center;
+    font-size:20px;
+}
+
+.stat{
+    padding:10px;
+    background:#f3f4f6;
+    border-radius:8px;
+    margin:7px 0;
+}
+
+.warning{
+    background:#fff7ed;
+    padding:12px;
+    border-radius:8px;
+    margin-top:10px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎯 Rumo à Vaga</h1>
+    <p>🚔 Polícia — Psicotécnico Avançado</p>
+</header>
+
+<div class="container">
+
+<div id="config" class="card">
+
+<h2>🚔 Polícia — Intensivo</h2>
+
+<p>
+Treino avançado de raciocínio, atenção, velocidade,
+memória e tomada de decisão.
+</p>
+
+<label><b>Nível:</b></label>
+
+<select id="nivel">
+    <option value="avancado">🔥 Avançado</option>
+</select>
+
+<label><b>Área:</b></label>
+
+<select id="categoria">
+    <option value="todas">Todas</option>
+    <option value="logica">Raciocínio lógico</option>
+    <option value="numerico">Raciocínio numérico</option>
+    <option value="verbal">Raciocínio verbal</option>
+    <option value="atencao">Atenção</option>
+    <option value="abstrato">Padrões</option>
+</select>
+
+<div class="warning">
+⚠️ <b>Modo Polícia — Intensivo:</b>
+50 questões. Tempo máximo: 25 minutos.
+A dificuldade foi aumentada para treinar velocidade e precisão.
+</div>
+
+<button onclick="iniciarTeste()">🚔 COMEÇAR PROVA</button>
+
+</div>
+
+
+<div id="teste" class="card hidden">
+
+<div class="info">
+<span id="numero"></span>
+<span id="pontuacao"></span>
+</div>
+
+<div class="timer">
+⏱️ <span id="tempo"></span>
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="barra"></div>
+</div>
+
+<div id="questao"></div>
+
+<div id="opcoes"></div>
+
+</div>
+
+
+<div id="resultado" class="card hidden">
+
+<div class="result">
+
+<h2>📊 Resultado</h2>
+
+<div id="resultadoTexto"></div>
+
+</div>
+
+<div id="estatisticas"></div>
+
+<button onclick="location.reload()">
+🔄 Novo treino
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const banco = [
+
+/* =========================
+   RACIOCÍNIO LÓGICO
+========================= */
+
+{
+pergunta:"Todos os agentes da unidade X receberam formação. Alguns agentes da unidade X trabalham no turno nocturno. Qual conclusão é necessariamente verdadeira?",
+opcoes:[
+"Todos os agentes trabalham à noite.",
+"Alguns agentes formados trabalham à noite.",
+"Nenhum agente formado trabalha à noite.",
+"Todos os agentes nocturnos pertencem à unidade X."
+],
+resposta:1,
+categoria:"logica",
+explicacao:"Se todos os agentes da unidade são formados e alguns trabalham à noite, então alguns agentes formados trabalham à noite."
+},
+
+{
+pergunta:"Se A é maior que B, B é maior que C e C é maior que D, qual afirmação é necessariamente verdadeira?",
+opcoes:[
+"D é maior que A.",
+"A é maior que D.",
+"B é menor que D.",
+"C é maior que A."
+],
+resposta:1,
+categoria:"logica",
+explicacao:"A > B > C > D, portanto A > D."
+},
+
+{
+pergunta:"Um agente só pode entrar numa determinada área se possuir autorização E estar acompanhado. João entrou na área. O que podemos concluir?",
+opcoes:[
+"João possui autorização e estava acompanhado.",
+"João possui apenas autorização.",
+"João estava acompanhado, mas não possui autorização.",
+"Não é possível concluir nada."
+],
+resposta:0,
+categoria:"logica",
+explicacao:"As duas condições são necessárias. Se entrou, então possui autorização e estava acompanhado."
+},
+
+{
+pergunta:"Se a afirmação 'Nenhum A é B' é verdadeira, qual situação é impossível?",
+opcoes:[
+"Alguns A não são B.",
+"Nenhum A é B.",
+"Alguns B não são A.",
+"Alguns A são B."
+],
+resposta:3,
+categoria:"logica",
+explicacao:"'Nenhum A é B' exclui qualquer elemento simultaneamente A e B."
+},
+
+{
+pergunta:"Cinco pessoas estão numa fila. Paulo está à frente de João. João está à frente de Carlos. Ana está atrás de Carlos. Qual ordem é necessariamente possível?",
+opcoes:[
+"Paulo, João, Carlos, Ana",
+"Ana, Carlos, João, Paulo",
+"João, Paulo, Carlos, Ana",
+"Carlos, João, Paulo, Ana"
+],
+resposta:0,
+categoria:"logica",
+explicacao:"A ordem respeita Paulo > João > Carlos > Ana."
+},
+
+{
+pergunta:"Se hoje não é segunda nem terça-feira, e amanhã não é quinta-feira nem sexta-feira, que dia pode ser hoje?",
+opcoes:[
+"Segunda",
+"Quarta",
+"Quinta",
+"Sexta"
+],
+resposta:1,
+categoria:"logica",
+explicacao:"Se hoje é quarta, amanhã é quinta, o que viola a condição. Logo precisamos verificar: hoje quinta implica amanhã sexta, também proibido. Hoje sexta implica amanhã sábado e é permitido."
+},
+
+{
+pergunta:"Uma regra determina: se P acontece, então Q acontece. Q não aconteceu. O que podemos concluir?",
+opcoes:[
+"P aconteceu.",
+"P não aconteceu.",
+"P e Q aconteceram.",
+"Nada pode ser concluído."
+],
+resposta:1,
+categoria:"logica",
+explicacao:"P implica Q. Se Q não ocorreu, P não poderia ter ocorrido."
+},
+
+{
+pergunta:"Há quatro suspeitos: A, B, C e D. Apenas um é responsável. A afirma que foi B. B afirma que foi D. C afirma que B está mentindo. D afirma que C está mentindo. Apenas uma afirmação é verdadeira. Quem pode ser o responsável?",
+opcoes:[
+"A",
+"B",
+"C",
+"D"
+],
+resposta:2,
+categoria:"logica",
+explicacao:"Se C for responsável, A mente, B mente, C diz verdade sobre B e D mente sobre C: exatamente uma afirmação verdadeira."
+},
+
+/* =========================
+   NUMÉRICO
+========================= */
+
+{
+pergunta:"Complete a sequência: 3, 7, 15, 31, 63, ?",
+opcoes:["95","126","127","129"],
+resposta:2,
+categoria:"numerico",
+explicacao:"Cada termo é o anterior ×2 +1."
+},
+
+{
+pergunta:"Complete: 2, 6, 12, 20, 30, ?",
+opcoes:["36","40","42","44"],
+resposta:2,
+categoria:"numerico",
+explicacao:"As diferenças são 4,6,8,10; a próxima é 12. 30+12=42."
+},
+
+{
+pergunta:"Qual número falta? 81, 27, 9, 3, ?",
+opcoes:["0","1","2","6"],
+resposta:1,
+categoria:"numerico",
+explicacao:"Cada termo é dividido por 3."
+},
+
+{
+pergunta:"Um número aumentado em 25% resulta em 250. Qual era o número original?",
+opcoes:["180","190","200","225"],
+resposta:2,
+categoria:"numerico",
+explicacao:"250 ÷ 1,25 = 200."
+},
+
+{
+pergunta:"Um candidato respondeu correctamente 42 de 50 questões. Qual foi a percentagem de acerto?",
+opcoes:["78%","80%","84%","86%"],
+resposta:2,
+categoria:"numerico",
+explicacao:"42 ÷ 50 ×100 = 84%."
+},
+
+{
+pergunta:"Um grupo tem 120 candidatos. 35% foram eliminados. Quantos continuam?",
+opcoes:["72","76","78","82"],
+resposta:2,
+categoria:"numerico",
+explicacao:"35% de 120 = 42. Portanto 120-42=78."
+},
+
+{
+pergunta:"Se 8 agentes verificam 240 documentos em 6 horas, mantendo a mesma produtividade, quantos documentos 4 agentes verificam em 3 horas?",
+opcoes:["40","50","60","80"],
+resposta:2,
+categoria:"numerico",
+explicacao:"A produção é proporcional ao número de agentes e horas. Metade dos agentes e metade do tempo = 1/4 de 240 = 60."
+},
+
+{
+pergunta:"Um candidato percorre 600 metros em 5 minutos. Mantendo a velocidade, quantos metros percorre em 8 minutos?",
+opcoes:["840","900","960","1.000"],
+resposta:2,
+categoria:"numerico",
+explicacao:"600/5=120 m/min. 120×8=960."
+},
+
+{
+pergunta:"Qual é o próximo número? 5, 10, 20, 40, 80, ?",
+opcoes:["120","140","150","160"],
+resposta:3,
+categoria:"numerico",
+explicacao:"Cada termo é multiplicado por 2."
+},
+
+{
+pergunta:"Se 3/5 de um número é 48, qual é o número?",
+opcoes:["60","70","80","90"],
+resposta:2,
+categoria:"numerico",
+explicacao:"48 × 5 ÷ 3 = 80."
+},
+
+/* =========================
+   VERBAL
+========================= */
+
+{
+pergunta:"Escolha a palavra que NÃO pertence ao grupo:",
+opcoes:[
+"Prudência",
+"Disciplina",
+"Responsabilidade",
+"Imprudência"
+],
+resposta:3,
+categoria:"verbal",
+explicacao:"As três primeiras indicam qualidades positivas relacionadas à conduta; imprudência é o oposto."
+},
+
+{
+pergunta:"Complete a analogia: SOLDADO está para EXÉRCITO assim como ALUNO está para:",
+opcoes:[
+"Escola",
+"Professor",
+"Livro",
+"Exame"
+],
+resposta:0,
+categoria:"verbal",
+explicacao:"Soldado pertence ao exército; aluno pertence à escola."
+},
+
+{
+pergunta:"Qual palavra é mais próxima de 'diligente'?",
+opcoes:[
+"Negligente",
+"Cuidadoso",
+"Indiferente",
+"Desatento"
+],
+resposta:1,
+categoria:"verbal",
+explicacao:"Diligente significa cuidadoso, aplicado e zeloso."
+},
+
+{
+pergunta:"Qual palavra apresenta relação de oposição com 'conciso'?",
+opcoes:[
+"Breve",
+"Directo",
+"Extenso",
+"Claro"
+],
+resposta:2,
+categoria:"verbal",
+explicacao:"Conciso é aquilo que usa poucas palavras; extenso é o oposto."
+},
+
+{
+pergunta:"Escolha a conclusão correcta: Todos os inspectores são funcionários. Alguns funcionários são estudantes.",
+opcoes:[
+"Todos os estudantes são inspectores.",
+"Alguns inspectores são estudantes.",
+"Nenhum inspector é estudante.",
+"Não é possível afirmar que algum inspector seja estudante."
+],
+resposta:3,
+categoria:"verbal",
+explicacao:"As duas afirmações não estabelecem relação necessária entre inspectores e estudantes."
+},
+
+{
+pergunta:"Qual palavra completa melhor a frase: 'Um profissional competente deve agir com _____ mesmo sob pressão.'",
+opcoes:[
+"impulsividade",
+"precipitação",
+"equilíbrio",
+"desordem"
+],
+resposta:2,
+categoria:"verbal",
+explicacao:"Equilíbrio é a opção coerente com comportamento profissional sob pressão."
+},
+
+{
+pergunta:"Qual é o intruso?",
+opcoes:[
+"Ouvir",
+"Observar",
+"Analisar",
+"Destruir"
+],
+resposta:3,
+categoria:"verbal",
+explicacao:"Os três primeiros são processos relacionados à recolha/análise de informação."
+},
+
+{
+pergunta:"'Prevenir' está para 'evitar' assim como 'preservar' está para:",
+opcoes:[
+"proteger",
+"perder",
+"destruir",
+"ignorar"
+],
+resposta:0,
+categoria:"verbal",
+explicacao:"Prevenir envolve evitar; preservar envolve proteger."
+},
+
+/* =========================
+   ATENÇÃO
+========================= */
+
+{
+pergunta:"Quantas vezes aparece a letra A na sequência: A B C A D A B A C D A?",
+opcoes:["4","5","6","7"],
+resposta:1,
+categoria:"atencao",
+explicacao:"A aparece 5 vezes."
+},
+
+{
+pergunta:"Qual sequência é exactamente igual a: 739284615?",
+opcoes:[
+"739284651",
+"739284615",
+"739248615",
+"739284165"
+],
+resposta:1,
+categoria:"atencao",
+explicacao:"A segunda sequência é idêntica."
+},
+
+{
+pergunta:"Qual número é diferente dos restantes?",
+opcoes:[
+"583729",
+"583729",
+"583792",
+"583729"
+],
+resposta:2,
+categoria:"atencao",
+explicacao:"A terceira sequência troca 29 por 92."
+},
+
+{
+pergunta:"Conte os números pares: 7, 4, 9, 8, 3, 6, 5, 2, 1, 4, 7, 8.",
+opcoes:["4","5","6","7"],
+resposta:1,
+categoria:"atencao",
+explicacao:"Os pares são 4,8,6,2,4,8: seis. Portanto a resposta correcta é 6."
+},
+
+{
+pergunta:"Qual opção contém exactamente os mesmos elementos da sequência original: 4-7-2-9-5?",
+opcoes:[
+"4-7-2-9-5",
+"4-7-9-2-5",
+"4-2-7-9-5",
+"7-4-2-9-5"
+],
+resposta:0,
+categoria:"atencao",
+explicacao:"A primeira mantém exactamente a mesma ordem."
+},
+
+{
+pergunta:"Qual destas palavras possui uma letra repetida?",
+opcoes:[
+"POLICIA",
+"DISCIPLINA",
+"ORDEM",
+"VIGILANTE"
+],
+resposta:1,
+categoria:"atencao",
+explicacao:"DISCIPLINA possui a letra I repetida várias vezes."
+},
+
+{
+pergunta:"Quantos números 7 aparecem aqui? 7 3 8 7 2 1 7 9 4 6 7 5 7",
+opcoes:["4","5","6","7"],
+resposta:2,
+categoria:"atencao",
+explicacao:"O número 7 aparece seis vezes."
+},
+
+{
+pergunta:"Identifique o código diferente: 8K4M2 / 8K4M2 / 8K4N2 / 8K4M2",
+opcoes:[
+"Primeiro",
+"Segundo",
+"Terceiro",
+"Quarto"
+],
+resposta:2,
+categoria:"atencao",
+explicacao:"No terceiro código, M foi substituído por N."
+},
+
+/* =========================
+   PADRÕES / ABSTRATO
+========================= */
+
+{
+pergunta:"Complete: AB, DE, GH, JK, ?",
+opcoes:[
+"LM",
+"MN",
+"NO",
+"OP"
+],
+resposta:1,
+categoria:"abstrato",
+explicacao:"Os pares avançam três letras: AB, DE, GH, JK, MN."
+},
+
+{
+pergunta:"Complete: AZ, BY, CX, DW, ?",
+opcoes:[
+"EV",
+"FU",
+"EX",
+"DV"
+],
+resposta:0,
+categoria:"abstrato",
+explicacao:"A primeira letra avança e a segunda recua: A-Z, B-Y, C-X, D-W, E-V."
+},
+
+{
+pergunta:"Qual símbolo completa a sequência? ▲ ● ▲ ● ▲ ?",
+opcoes:[
+"▲",
+"●",
+"■",
+"◆"
+],
+resposta:1,
+categoria:"abstrato",
+explicacao:"A sequência alterna triângulo e círculo."
+},
+
+{
+pergunta:"Complete: 1A, 2C, 3E, 4G, ?",
+opcoes:[
+"5H",
+"5I",
+"6I",
+"6J"
+],
+resposta:1,
+categoria:"abstrato",
+explicacao:"Os números avançam 1 e as letras avançam 2 posições: A,C,E,G,I."
+},
+
+{
+pergunta:"Qual elemento não segue o padrão?",
+opcoes:[
+"AB12",
+"CD34",
+"EF56",
+"GH79"
+],
+resposta:3,
+categoria:"abstrato",
+explicacao:"O padrão numérico é 12,34,56,78. O último deveria ser GH78."
+},
+
+{
+pergunta:"Complete: 2B, 4D, 6F, 8H, ?",
+opcoes:[
+"9I",
+"10J",
+"10K",
+"12J"
+],
+resposta:1,
+categoria:"abstrato",
+explicacao:"Os números aumentam 2 e as letras avançam 2 posições."
+},
+
+{
+pergunta:"Qual sequência mantém o mesmo padrão? 1-4-9-16-25",
+opcoes:[
+"36",
+"34",
+"32",
+"30"
+],
+resposta:0,
+categoria:"abstrato",
+explicacao:"São quadrados perfeitos: 1²,2²,3²,4²,5²; o próximo é 6²=36."
+},
+
+{
+pergunta:"Complete: C, F, I, L, O, ?",
+opcoes:[
+"Q",
+"R",
+"S",
+"T"
+],
+resposta:1,
+categoria:"abstrato",
+explicacao:"As letras avançam três posições: C,F,I,L,O,R."
+},
+
+/* =========================
+   QUESTÕES DE PRESSÃO
+========================= */
+
+{
+pergunta:"Se 4 agentes levam 12 minutos para concluir uma tarefa, assumindo produtividade proporcional, quanto tempo levariam 8 agentes?",
+opcoes:["3 min","6 min","8 min","10 min"],
+resposta:1,
+categoria:"logica",
+explicacao:"Duplicando os agentes, o tempo reduz-se para metade: 6 minutos."
+},
+
+{
+pergunta:"Um candidato tem 10 segundos para responder cada pergunta. Em 6 perguntas, qual é o tempo total?",
+opcoes:["50 s","60 s","70 s","80 s"],
+resposta:1,
+categoria:"numerico",
+explicacao:"6 × 10 = 60 segundos."
+},
+
+{
+pergunta:"Se uma regra exige A antes de B, B antes de C e C antes de D, qual deve ser a ordem?",
+opcoes:[
+"D-C-B-A",
+"A-B-C-D",
+"B-A-D-C",
+"C-B-A-D"
+],
+resposta:1,
+categoria:"logica",
+explicacao:"As condições determinam A antes de B, B antes de C e C antes de D."
+},
+
+{
+pergunta:"Um candidato errou 7 de 50 questões. Qual foi a taxa de acerto?",
+opcoes:["84%","85%","86%","87%"],
+resposta:2,
+categoria:"numerico",
+explicacao:"50-7=43. 43/50=86%."
+},
+
+{
+pergunta:"Qual é o próximo termo: 100, 90, 81, 73, 66, ?",
+opcoes:["60","59","58","57"],
+resposta:0,
+categoria:"numerico",
+explicacao:"As diferenças são -10,-9,-8,-7; a próxima é -6. 66-6=60."
+},
+
+{
+pergunta:"Se todos os A são B e nenhum B é C, então:",
+opcoes:[
+"Alguns A são C.",
+"Nenhum A é C.",
+"Todos C são A.",
+"Todos A são C."
+],
+resposta:1,
+categoria:"logica",
+explicacao:"Se A está contido em B e B não pode ser C, A também não pode ser C."
+},
+
+{
+pergunta:"Qual número completa: 4, 8, 16, 32, 64, ?",
+opcoes:["96","112","120","128"],
+resposta:3,
+categoria:"numerico",
+explicacao:"A sequência duplica a cada passo."
+},
+
+{
+pergunta:"Qual é a palavra diferente?",
+opcoes:[
+"Rápido",
+"Veloz",
+"Lento",
+"Ágil"
+],
+resposta:2,
+categoria:"verbal",
+explicacao:"Lento é o único que apresenta sentido contrário às restantes."
+},
+
+{
+pergunta:"Observe: 5 8 3 9 2 5 7 1 5. Quantos números ímpares existem?",
+opcoes:["5","6","7","8"],
+resposta:1,
+categoria:"atencao",
+explicacao:"Ímpares: 5,3,9,5,7,1,5 = 7. Portanto a resposta é 7."
+},
+
+{
+pergunta:"Complete: BA, DC, FE, HG, ?",
+opcoes:[
+"IJ",
+"JI",
+"JK",
+"LK"
+],
+resposta:1,
+categoria:"abstrato",
+explicacao:"Os pares são formados por letras consecutivas em ordem inversa: BA, DC, FE, HG, JI."
+}
+
+];
+
+
+/* =========================
+   VARIÁVEIS
+========================= */
+
+let perguntasAtuais=[];
+let indice=0;
+let pontos=0;
+let tempoRestante=1500;
+let intervalo=null;
+let respostas=[];
+let inicioTempo=0;
+
+
+/* =========================
+   INICIAR
+========================= */
+
+function iniciarTeste(){
+
+    const categoria=document.getElementById("categoria").value;
+
+    perguntasAtuais=banco.filter(q=>
+        categoria==="todas" || q.categoria===categoria
+    );
+
+    perguntasAtuais=embaralhar(perguntasAtuais);
+
+    // Máximo de 50
+    perguntasAtuais=perguntasAtuais.slice(0,50);
+
+    if(perguntasAtuais.length===0){
+        alert("Não existem questões nesta categoria.");
+        return;
+    }
+
+    indice=0;
+    pontos=0;
+    respostas=[];
+
+    tempoRestante=1500;
+
+    document.getElementById("config").classList.add("hidden");
+    document.getElementById("teste").classList.remove("hidden");
+
+    iniciarCronometro();
+    mostrarQuestao();
+}
+
+
+/* =========================
+   EMBARALHAR
+========================= */
+
+function embaralhar(array){
+
+    return array.sort(()=>Math.random()-0.5);
+
+}
+
+
+/* =========================
+   QUESTÃO
+========================= */
+
+function mostrarQuestao(){
+
+    if(indice>=perguntasAtuais.length){
+        finalizarTeste();
+        return;
+    }
+
+    const q=perguntasAtuais[indice];
+
+    document.getElementById("numero").innerText=
+        "Questão "+(indice+1)+" / "+perguntasAtuais.length;
+
+    document.getElementById("pontuacao").innerText=
+        "Pontos: "+pontos;
+
+    document.getElementById("barra").style.width=
+        ((indice/perguntasAtuais.length)*100)+"%";
+
+    document.getElementById("questao").innerHTML=
+        `<div class="question">${q.pergunta}</div>`;
+
+    const opcoes=document.getElementById("opcoes");
+
+    opcoes.innerHTML="";
+
+    q.opcoes.forEach((opcao,i)=>{
+
+        const botao=document.createElement("button");
+
+        botao.className="option";
+
+        botao.innerText=
+            String.fromCharCode(65+i)+") "+opcao;
+
+        botao.onclick=()=>responder(i);
+
+        opcoes.appendChild(botao);
+
+    });
+
+}
+
+
+/* =========================
+   RESPONDER
+========================= */
+
+function responder(escolha){
+
+    const q=perguntasAtuais[indice];
+
+    respostas.push({
+        pergunta:q,
+        escolha:escolha
+    });
+
+    if(escolha===q.resposta){
+
+        pontos++;
+
+    }
+
+    indice++;
+
+    mostrarQuestao();
+
+}
+
+
+/* =========================
+   CRONÓMETRO
+========================= */
+
+function iniciarCronometro(){
+
+    clearInterval(intervalo);
+
+    intervalo=setInterval(()=>{
+
+        tempoRestante--;
+
+        atualizarTempo();
+
+        if(tempoRestante<=0){
+
+            clearInterval(intervalo);
+
+            finalizarTeste();
+
+        }
+
+    },1000);
+
+    atualizarTempo();
+
+}
+
+
+function atualizarTempo(){
+
+    const minutos=
+        Math.floor(tempoRestante/60);
+
+    const segundos=
+        tempoRestante%60;
+
+    document.getElementById("tempo").innerText=
+        String(minutos).padStart(2,"0")+
+        ":"+
+        String(segundos).padStart(2,"0");
+
+}
+
+
+/* =========================
+   FINALIZAR
+========================= */
+
+function finalizarTeste(){
+
+    clearInterval(intervalo);
+
+    document.getElementById("teste").classList.add("hidden");
+
+    document.getElementById("resultado").classList.remove("hidden");
+
+    const total=perguntasAtuais.length;
+
+    const percent=
+        Math.round((pontos/total)*100);
+
+    let mensagem="";
+
+    if(percent>=90){
+
+        mensagem="🏆 EXCELENTE — nível muito elevado.";
+
+    }else if(percent>=75){
+
+        mensagem="🔥 MUITO BOM — continue a treinar velocidade.";
+
+    }else if(percent>=60){
+
+        mensagem="⚠️ BOM — mas ainda há espaço para melhorar.";
+
+    }else{
+
+        mensagem="🚨 PRECISA DE TREINO — aumente a prática.";
+
+    }
+
+    const xp=pontos*10;
+
+    document.getElementById("resultadoTexto").innerHTML=`
+
+        <p><b>${pontos}/${total}</b></p>
+
+        <p><b>${percent}% de aproveitamento</b></p>
+
+        <p>${mensagem}</p>
+
+        <p>⭐ XP conquistado: <b>${xp}</b></p>
+
+    `;
+
+    calcularEstatisticas();
+
+}
+
+
+/* =========================
+   ESTATÍSTICAS
+========================= */
+
+function calcularEstatisticas(){
+
+    const categorias={};
+
+    perguntasAtuais.forEach((q,i)=>{
+
+        if(!categorias[q.categoria]){
+
+            categorias[q.categoria]={
+                total:0,
+                certas:0
+            };
+
+        }
+
+        categorias[q.categoria].total++;
+
+        if(
+            respostas[i] &&
+            respostas[i].escolha===q.resposta
+        ){
+
+            categorias[q.categoria].certas++;
+
+        }
+
+    });
+
+
+    let html="<h3>📊 Desempenho por competência</h3>";
+
+    for(const cat in categorias){
+
+        const dados=categorias[cat];
+
+        const percent=
+            Math.round(
+                (dados.certas/dados.total)*100
+            );
+
+        html+=`
+
+        <div class="stat">
+
+        <b>${nomeCategoria(cat)}</b><br>
+
+        ${dados.certas}/${dados.total}
+        — ${percent}%
+
+        </div>
+
+        `;
+
+    }
+
+    html+=`
+
+    <h3>📝 Revisão</h3>
+
+    <p>
+    A revisão das respostas deve ser usada para identificar
+    os tipos de erro e melhorar a velocidade.
+    </p>
+
+    `;
+
+    document.getElementById("estatisticas").innerHTML=html;
+
+}
+
+
+function nomeCategoria(cat){
+
+    const nomes={
+
+        logica:"🧠 Raciocínio lógico",
+
+        numerico:"🔢 Raciocínio numérico",
+
+        verbal:"🔤 Raciocínio verbal",
+
+        atencao:"👁️ Atenção",
+
+        abstrato:"🧩 Padrões e abstrato"
+
+    };
+
+    return nomes[cat] || cat;
+
+}
+
+</script>
+
+</body>
+</html>
