@@ -1,191 +1,629 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Preparatório Concursos Públicos Angola</title>
+<title>Preparatório Angola | Concursos Públicos</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fa;
-            color: #222;
-        }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-        header {
-            background: #0b3d91;
-            color: white;
-            padding: 25px 15px;
-            text-align: center;
-        }
+body{
+  font-family:Arial, sans-serif;
+  background:#f5f7fa;
+  color:#172033;
+  line-height:1.5;
+}
 
-        header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+header{
+  background:#20242a;
+  color:white;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
 
-        header p {
-            font-size: 16px;
-        }
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
 
-        nav {
-            background: white;
-            padding: 12px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+.menu{
+  font-size:30px;
+}
 
-        nav a {
-            color: #0b3d91;
-            text-decoration: none;
-            margin: 8px;
-            font-weight: bold;
-        }
+.hero{
+  background:linear-gradient(135deg,#073763,#0b5394);
+  color:white;
+  text-align:center;
+  padding:55px 20px;
+}
 
-        .hero {
-            padding: 40px 20px;
-            text-align: center;
-            background: white;
-        }
+.hero h1{
+  font-size:34px;
+  margin-bottom:12px;
+}
 
-        .hero h2 {
-            color: #0b3d91;
-            font-size: 30px;
-            margin-bottom: 15px;
-        }
+.hero p{
+  font-size:18px;
+  max-width:650px;
+  margin:auto;
+}
 
-        .hero p {
-            font-size: 18px;
-            line-height: 1.5;
-        }
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:30px 18px;
+}
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 30px 20px;
-        }
+.section-title{
+  text-align:center;
+  margin-bottom:25px;
+}
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
+.section-title h2{
+  font-size:28px;
+  color:#073763;
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-        }
+.section-title p{
+  color:#666;
+}
 
-        .card h3 {
-            color: #0b3d91;
-            margin-bottom: 10px;
-        }
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
 
-        .card p {
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
+.card{
+  background:white;
+  border-radius:15px;
+  padding:25px;
+  box-shadow:0 3px 12px rgba(0,0,0,.10);
+  border:1px solid #e4e8ed;
+}
 
-        .btn {
-            display: inline-block;
-            background: #0b3d91;
-            color: white;
-            padding: 10px 18px;
-            border-radius: 6px;
-            text-decoration: none;
-        }
+.icon{
+  font-size:42px;
+  margin-bottom:10px;
+}
 
-        footer {
-            margin-top: 30px;
-            background: #0b3d91;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
-    </style>
+.card h3{
+  font-size:22px;
+  color:#073763;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#555;
+  margin-bottom:18px;
+}
+
+.btn{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  background:#1473e6;
+  color:white;
+  padding:13px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.btn:hover{
+  opacity:.9;
+}
+
+.warning{
+  background:#fff8df;
+  border-left:5px solid #f2b705;
+  padding:20px;
+  margin:25px 0;
+  border-radius:8px;
+}
+
+.warning strong{
+  color:#333;
+}
+
+.plans{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
+}
+
+.plan{
+  background:white;
+  border:2px solid #1473e6;
+  border-radius:15px;
+  overflow:hidden;
+  text-align:center;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.plan-header{
+  background:#1473e6;
+  color:white;
+  padding:18px;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.plan-body{
+  padding:25px 18px;
+}
+
+.price{
+  font-size:32px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.plan-body p{
+  margin:10px 0;
+}
+
+.plan .btn{
+  margin-top:20px;
+}
+
+.featured{
+  border-color:#f2b705;
+}
+
+.featured .plan-header{
+  background:#f2b705;
+  color:#222;
+}
+
+.payment{
+  background:#20242a;
+  color:white;
+  padding:35px 20px;
+  text-align:center;
+}
+
+.payment h2{
+  margin-bottom:15px;
+}
+
+.payment p{
+  max-width:650px;
+  margin:8px auto;
+}
+
+.whatsapp{
+  position:fixed;
+  right:18px;
+  bottom:20px;
+  background:#25D366;
+  color:white;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  text-decoration:none;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  z-index:200;
+}
+
+footer{
+  background:#15181c;
+  color:#bbb;
+  text-align:center;
+  padding:25px 15px;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .container{
+    padding:25px 14px;
+  }
+
+  .section-title h2{
+    font-size:24px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Preparatório Concursos Públicos Angola</h1>
-    <p>Prepare-se. Estude. Conquiste a sua oportunidade.</p>
+
+  <div class="logo">
+    Preparatório Angola
+  </div>
+
+  <div class="menu">
+    ☰
+  </div>
+
 </header>
 
-<nav>
-    <a href="#">Início</a>
-    <a href="#materiais">Materiais</a>
-    <a href="#simulados">Simulados</a>
-    <a href="#psicotecnico">Psicotécnico</a>
-    <a href="#concursos">Concursos</a>
-</nav>
 
 <section class="hero">
-    <h2>Bem-vindo ao seu centro de preparação</h2>
-    <p>
-        Encontre materiais de estudo, simulados, testes psicotécnicos
-        e informações sobre concursos públicos em Angola.
-    </p>
+
+  <h1>Prepare-se para a sua oportunidade</h1>
+
+  <p>
+    Plataforma de preparação para concursos públicos em Angola,
+    com simulados, testes psicotécnicos e materiais de estudo.
+  </p>
+
 </section>
+
 
 <div class="container">
 
-    <div class="cards">
+  <div class="warning">
 
-        <div class="card" id="materiais">
-            <h3>📚 Materiais de Estudo</h3>
-            <p>
-                Conteúdos organizados para ajudar na preparação
-                dos candidatos.
-            </p>
-            <a class="btn" href="#">Ver materiais</a>
-        </div>
+    <strong>⚠️ Atenção:</strong>
 
-        <div class="card" id="simulados">
-            <h3>📝 Simulados</h3>
-            <p>
-                Pratique através de perguntas semelhantes às
-                encontradas nos concursos.
-            </p>
-            <a class="btn" href="#">Fazer simulado</a>
-        </div>
+    As candidaturas aos concursos públicos devem ser realizadas
+    exclusivamente através dos canais oficiais da entidade responsável.
+    Este site é uma plataforma independente de preparação.
 
-        <div class="card" id="psicotecnico">
-            <h3>🧠 Teste Psicotécnico</h3>
-            <p>
-                Treine raciocínio lógico, numérico, verbal,
-                atenção e memória.
-            </p>
-            <a class="btn" href="#">Começar treino</a>
-        </div>
+  </div>
 
-        <div class="card" id="concursos">
-            <h3>🏛️ Concursos Públicos</h3>
-            <p>
-                Acompanhe informações e oportunidades de
-                concursos em Angola.
-            </p>
-            <a class="btn" href="#">Ver concursos</a>
-        </div>
+
+  <section>
+
+    <div class="section-title">
+
+      <h2>O que oferecemos?</h2>
+
+      <p>
+        Prepare-se de forma prática e organizada.
+      </p>
 
     </div>
 
+
+    <div class="cards">
+
+
+      <div class="card">
+
+        <div class="icon">📝</div>
+
+        <h3>Testes Modelo</h3>
+
+        <p>
+          Questões de preparação organizadas por áreas e
+          órgãos do Estado.
+        </p>
+
+        <a class="btn" href="simulado.html">
+          Fazer Simulado
+        </a>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🧠</div>
+
+        <h3>Testes Psicotécnicos</h3>
+
+        <p>
+          Pratique raciocínio lógico, numérico, verbal,
+          atenção, memória e velocidade.
+        </p>
+
+        <a class="btn" href="simulado.html">
+          Começar Teste
+        </a>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">📚</div>
+
+        <h3>Materiais de Estudo</h3>
+
+        <p>
+          Conteúdos de apoio para melhorar a sua preparação
+          para diferentes concursos.
+        </p>
+
+        <a class="btn" href="#planos">
+          Ver Materiais
+        </a>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🎯</div>
+
+        <h3>Simulados</h3>
+
+        <p>
+          Responda às questões e veja automaticamente
+          a sua pontuação.
+        </p>
+
+        <a class="btn" href="simulado.html">
+          Testar Agora
+        </a>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
 </div>
 
+
+<section class="container">
+
+  <div class="section-title">
+
+    <h2>Áreas de Preparação</h2>
+
+    <p>
+      Conteúdos que vamos desenvolver na plataforma.
+    </p>
+
+  </div>
+
+
+  <div class="cards">
+
+
+    <div class="card">
+
+      <div class="icon">👮</div>
+
+      <h3>MININT</h3>
+
+      <p>
+        Preparação para testes psicotécnicos,
+        raciocínio e conhecimentos gerais.
+      </p>
+
+      <a class="btn" href="simulado.html">
+        Praticar
+      </a>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">⚖️</div>
+
+      <h3>Justiça</h3>
+
+      <p>
+        Conteúdos e exercícios relacionados
+        com concursos da área da Justiça.
+      </p>
+
+      <a class="btn" href="simulado.html">
+        Praticar
+      </a>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🏛️</div>
+
+      <h3>Administração Pública</h3>
+
+      <p>
+        Administração Pública, ética,
+        cultura geral e conhecimentos essenciais.
+      </p>
+
+      <a class="btn" href="simulado.html">
+        Praticar
+      </a>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<section class="container" id="planos">
+
+  <div class="section-title">
+
+    <h2>Planos de Acesso</h2>
+
+    <p>
+      Escolha o período que melhor se adapta à sua preparação.
+    </p>
+
+  </div>
+
+
+  <div class="plans">
+
+
+    <div class="plan">
+
+      <div class="plan-header">
+        ⚡ Plano 1 Hora
+      </div>
+
+      <div class="plan-body">
+
+        <div class="price">
+          500 Kz
+        </div>
+
+        <p>✓ Acesso aos simulados</p>
+        <p>✓ Testes psicotécnicos</p>
+        <p>✓ Resultado automático</p>
+
+        <a class="btn" href="#pagamento">
+          Comprar Agora
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="plan">
+
+      <div class="plan-header">
+        📅 Plano 24 Horas
+      </div>
+
+      <div class="plan-body">
+
+        <div class="price">
+          1.000 Kz
+        </div>
+
+        <p>✓ Acesso por 24 horas</p>
+        <p>✓ Simulados</p>
+        <p>✓ Testes psicotécnicos</p>
+
+        <a class="btn" href="#pagamento">
+          Comprar Agora
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="plan">
+
+      <div class="plan-header">
+        📆 Plano 7 Dias
+      </div>
+
+      <div class="plan-body">
+
+        <div class="price">
+          2.000 Kz
+        </div>
+
+        <p>✓ Acesso por 7 dias</p>
+        <p>✓ Todos os simulados</p>
+        <p>✓ Testes psicotécnicos</p>
+
+        <a class="btn" href="#pagamento">
+          Comprar Agora
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="plan featured">
+
+      <div class="plan-header">
+        🏆 Plano Mensal
+      </div>
+
+      <div class="plan-body">
+
+        <div class="price">
+          5.000 Kz
+        </div>
+
+        <p>✓ Acesso por 30 dias</p>
+        <p>✓ Todos os recursos premium</p>
+        <p>✓ Suporte prioritário</p>
+
+        <a class="btn" href="#pagamento">
+          Comprar Agora
+        </a>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<section class="payment" id="pagamento">
+
+  <h2>💳 Como adquirir o acesso</h2>
+
+  <p>
+    Escolha o seu plano e siga as instruções de pagamento.
+  </p>
+
+  <p>
+    Após o pagamento, envie o comprovativo através
+    do nosso contacto para ativação do acesso.
+  </p>
+
+  <p>
+    <strong>Em breve teremos ativação automática.</strong>
+  </p>
+
+</section>
+
+
 <footer>
-    <p>© 2026 Preparatório Concursos Públicos Angola</p>
-    <p>Informação • Preparação • Oportunidade</p>
+
+  <p>
+    © 2026 Preparatório Angola
+  </p>
+
+  <p>
+    Plataforma independente de preparação para concursos públicos.
+  </p>
+
 </footer>
+
+
+<a
+  class="whatsapp"
+  href="https://wa.me/244000000000"
+  target="_blank"
+  aria-label="WhatsApp">
+  ☎
+</a>
+
 
 </body>
 </html>
