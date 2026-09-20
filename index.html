@@ -546,3 +546,101 @@
       
         
           
+<!-- Seção do Simulado Gratuito no HTML -->
+<section class="section-padding" id="simulado-gratuito" style="background-color: var(--bg-card); margin: 2rem 5%; border-radius: 12px; border: 1px solid var(--accent-gold);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <div>
+            <h2 class="section-title">📝 Simulado Gratuito: Raciocínio Lógico</h2>
+            <p class="section-subtitle">Teste o seu nível em 10 minutos antes de subscrever.</p>
+        </div>
+        <div id="timer" style="font-size: 1.2rem; font-weight: bold; color: var(--accent-gold); background: var(--bg-dark); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">
+            ⏱️ 10:00
+        </div>
+    </div>
+
+    <!-- Pergunta Interativa -->
+    <div id="quiz-container">
+        <div style="margin-bottom: 1.5rem;">
+            <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">1. Observe a sequência: 2, 4, 8, 16, 32, ... Qual é o próximo número?</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                <label style="background: var(--bg-dark); padding: 0.8rem 1rem; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-color);">
+                    <input type="radio" name="q1" value="A"> A) 48
+                </label>
+                <label style="background: var(--bg-dark); padding: 0.8rem 1rem; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-color);">
+                    <input type="radio" name="q1" value="B"> B) 64
+                </label>
+                <label style="background: var(--bg-dark); padding: 0.8rem 1rem; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-color);">
+                    <input type="radio" name="q1" value="C"> C) 60
+                </label>
+                <label style="background: var(--bg-dark); padding: 0.8rem 1rem; border-radius: 6px; cursor: pointer; border: 1px solid var(--border-color);">
+                    <input type="radio" name="q1" value="D"> D) 128
+                </label>
+            </div>
+        </div>
+
+        <button onclick="calcularResultado()" class="btn-primary" style="border: none; cursor: pointer;">
+            📊 Finalizar Teste e Ver Resultado
+        </button>
+    </div>
+
+    <!-- Área de Resultado (Oculta Inicialmente) -->
+    <div id="resultado-container" style="display: none; text-align: center; padding: 2rem 0;">
+        <h3 style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">Resultado do Simulado</h3>
+        <p id="mensagem-resultado" style="font-size: 1.2rem; margin-bottom: 1.5rem;"></p>
+        
+        <div style="background: var(--bg-dark); padding: 1.5rem; border-radius: 8px; max-width: 500px; margin: 0 auto; border: 1px solid var(--border-color);">
+            <h4>Quer continuar a sua preparação?</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Aceda aos simulados avançados, testes psicotécnicos completos e resumos em PDF com os planos Premium.</p>
+            <a href="#planos" class="btn-primary" style="display: inline-block;">⭐ Ver Planos Premium</a>
+        </div>
+    </div>
+</section>
+
+<!-- Script para a Lógica e Cronómetro -->
+<script>
+    // 1. Cronómetro de 10 minutos (600 segundos)
+    let tempoRestante = 600;
+    const elementoTimer = document.getElementById('timer');
+
+    const cronometro = setInterval(() => {
+        let minutos = Math.floor(tempoRestante / 60);
+        let segundos = tempoRestante % 60;
+
+        segundos = segundos < 10 ? '0' + segundos : segundos;
+        minutos = minutos < 10 ? '0' + minutos : minutos;
+
+        elementoTimer.innerHTML = `⏱️ ${minutos}:${segundos}`;
+
+        if (tempoRestante <= 0) {
+            clearInterval(cronometro);
+            alert("O tempo do simulado terminou!");
+            calcularResultado();
+        } else {
+            tempoRestante--;
+        }
+    }, 1000);
+
+    // 2. Cálculo do Resultado
+    function calcularResultado() {
+        clearInterval(cronometro);
+        
+        // Verifica a resposta da pergunta 1 (Opção correta: B)
+        const respostaQ1 = document.querySelector('input[name="q1"]:checked');
+        let pontuacao = 0;
+
+        if (respostaQ1 && respostaQ1.value === 'B') {
+            pontuacao = 100; // 100% de aproveitamento na questão
+        }
+
+        // Exibe o painel de resultados
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('resultado-container').style.display = 'block';
+        
+        const elementoMensagem = document.getElementById('mensagem-resultado');
+        if (pontuacao === 100) {
+            elementoMensagem.innerHTML = "🎉 **Excelente!** Acertou na questão de raciocínio lógico (Sequência dobrada: 2×2=4, 4×2=8, 8×2=16, 16×2=32, 32×2=64).";
+        } else {
+            elementoMensagem.innerHTML = "💡 **Bom tento!** A resposta correta era a **B) 64** (a sequência multiplica cada termo por 2).";
+        }
+    }
+</script>
