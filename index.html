@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Preparatório Angola | Concursos Públicos</title>
+<title>Rumo a Vaga | Preparação para Concursos em Angola</title>
+
+<meta name="description" content="Rumo a Vaga - plataforma independente de preparação para concursos públicos em Angola, com matérias, simulados e testes psicotécnicos.">
 
 <style>
 
@@ -14,84 +16,166 @@
   padding:0;
 }
 
-body{
-  font-family:Arial, sans-serif;
-  background:#f5f7fa;
-  color:#172033;
-  line-height:1.5;
+html{
+  scroll-behavior:smooth;
 }
 
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#f4f6fa;
+  color:#172033;
+  line-height:1.6;
+}
+
+/* CABEÇALHO */
+
 header{
-  background:#20242a;
+  background:#071a35;
   color:white;
-  padding:18px 20px;
+  padding:15px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:1000;
+  box-shadow:0 3px 15px rgba(0,0,0,.2);
 }
 
 .logo{
   font-size:22px;
   font-weight:bold;
+  letter-spacing:.5px;
+}
+
+.logo span{
+  color:#f2b705;
 }
 
 .menu{
-  font-size:30px;
+  font-size:28px;
 }
 
+/* HERO */
+
 .hero{
-  background:linear-gradient(135deg,#073763,#0b5394);
+  background:
+    linear-gradient(135deg,rgba(4,24,51,.95),rgba(7,83,148,.90));
   color:white;
   text-align:center;
-  padding:55px 20px;
+  padding:65px 20px;
+}
+
+.hero .tag{
+  display:inline-block;
+  background:#f2b705;
+  color:#111;
+  padding:7px 15px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:15px;
 }
 
 .hero h1{
-  font-size:34px;
-  margin-bottom:12px;
+  font-size:38px;
+  margin-bottom:15px;
 }
 
 .hero p{
   font-size:18px;
-  max-width:650px;
+  max-width:720px;
   margin:auto;
+  color:#eef5ff;
 }
 
+.hero-buttons{
+  margin-top:25px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  text-align:center;
+  text-decoration:none;
+  background:#1473e6;
+  color:white;
+  padding:13px 20px;
+  border-radius:9px;
+  font-weight:bold;
+  border:none;
+  cursor:pointer;
+}
+
+.btn-gold{
+  background:#f2b705;
+  color:#111;
+}
+
+.btn-dark{
+  background:#071a35;
+}
+
+.btn:hover{
+  opacity:.9;
+}
+
+/* CONTAINER */
+
 .container{
-  max-width:1000px;
+  max-width:1100px;
   margin:auto;
-  padding:30px 18px;
+  padding:45px 18px;
 }
 
 .section-title{
   text-align:center;
-  margin-bottom:25px;
+  margin-bottom:28px;
 }
 
 .section-title h2{
-  font-size:28px;
+  font-size:29px;
   color:#073763;
+  margin-bottom:6px;
 }
 
 .section-title p{
-  color:#666;
+  color:#667085;
 }
+
+/* AVISO */
+
+.warning{
+  background:#fff8df;
+  border-left:5px solid #f2b705;
+  padding:20px;
+  margin:30px 0;
+  border-radius:10px;
+}
+
+/* CARDS */
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:20px;
 }
 
 .card{
   background:white;
-  border-radius:15px;
-  padding:25px;
-  box-shadow:0 3px 12px rgba(0,0,0,.10);
-  border:1px solid #e4e8ed;
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  border:1px solid #e3e7ed;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 22px rgba(0,0,0,.12);
 }
 
 .icon{
@@ -100,63 +184,179 @@ header{
 }
 
 .card h3{
-  font-size:22px;
+  color:#073763;
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#5d6675;
+  margin-bottom:16px;
+}
+
+.small{
+  font-size:13px;
+  color:#777;
+}
+
+/* ÁREAS */
+
+.area-card{
+  padding:0;
+  overflow:hidden;
+}
+
+.area-image{
+  height:145px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:65px;
+  background:linear-gradient(135deg,#071a35,#1473e6);
+}
+
+.area-content{
+  padding:20px;
+}
+
+/* MATÉRIAS */
+
+.subject-list{
+  list-style:none;
+  margin:12px 0 18px;
+}
+
+.subject-list li{
+  padding:6px 0;
+  border-bottom:1px solid #edf0f4;
+  font-size:14px;
+}
+
+.subject-list li::before{
+  content:"✓ ";
+  color:#1473e6;
+  font-weight:bold;
+}
+
+/* PSICOTÉCNICO */
+
+.psych{
+  background:#071a35;
+  color:white;
+  border-radius:18px;
+  padding:35px 25px;
+}
+
+.psych h2{
+  color:white;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.psych p{
+  text-align:center;
+  color:#d8e5f5;
+}
+
+.levels{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-top:25px;
+}
+
+.level{
+  background:#102c52;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.level strong{
+  display:block;
+  margin-bottom:7px;
+  color:#f2b705;
+}
+
+/* TESTE GRATUITO */
+
+.free-test{
+  background:white;
+  border-radius:18px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+  border:2px solid #1473e6;
+}
+
+.free-test h2{
   color:#073763;
   margin-bottom:10px;
 }
 
-.card p{
-  color:#555;
-  margin-bottom:18px;
+/* BIBLIOTECA */
+
+.library{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
 }
 
-.btn{
-  display:block;
-  text-align:center;
-  text-decoration:none;
-  background:#1473e6;
-  color:white;
-  padding:13px;
-  border-radius:8px;
-  font-weight:bold;
-}
-
-.btn:hover{
-  opacity:.9;
-}
-
-.warning{
-  background:#fff8df;
-  border-left:5px solid #f2b705;
+.library-item{
+  background:white;
   padding:20px;
-  margin:25px 0;
-  border-radius:8px;
+  border-radius:13px;
+  border-left:4px solid #1473e6;
+  box-shadow:0 3px 10px rgba(0,0,0,.06);
 }
 
-.warning strong{
-  color:#333;
+.library-item strong{
+  color:#073763;
 }
+
+/* OPORTUNIDADES */
+
+.opportunity{
+  background:white;
+  border-radius:15px;
+  padding:22px;
+  margin-bottom:15px;
+  border:1px solid #e1e6ec;
+}
+
+.status{
+  display:inline-block;
+  background:#e5f8ed;
+  color:#157347;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+/* PLANOS */
 
 .plans{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
 }
 
 .plan{
   background:white;
   border:2px solid #1473e6;
-  border-radius:15px;
+  border-radius:16px;
   overflow:hidden;
   text-align:center;
-  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .plan-header{
   background:#1473e6;
   color:white;
-  padding:18px;
-  font-size:22px;
+  padding:17px;
+  font-size:20px;
   font-weight:bold;
 }
 
@@ -165,43 +365,117 @@ header{
 }
 
 .price{
-  font-size:32px;
+  font-size:31px;
   font-weight:bold;
-  margin-bottom:18px;
+  margin-bottom:15px;
+  color:#071a35;
 }
 
 .plan-body p{
-  margin:10px 0;
+  margin:8px 0;
 }
 
 .plan .btn{
-  margin-top:20px;
+  margin-top:18px;
+  width:100%;
 }
 
 .featured{
   border-color:#f2b705;
+  transform:scale(1.02);
 }
 
 .featured .plan-header{
   background:#f2b705;
-  color:#222;
+  color:#111;
 }
 
+/* PAGAMENTO */
+
 .payment{
-  background:#20242a;
+  background:#071a35;
   color:white;
-  padding:35px 20px;
-  text-align:center;
+  padding:45px 20px;
+}
+
+.payment-box{
+  max-width:850px;
+  margin:auto;
 }
 
 .payment h2{
-  margin-bottom:15px;
+  text-align:center;
+  color:#f2b705;
+  margin-bottom:10px;
 }
 
-.payment p{
-  max-width:650px;
-  margin:8px auto;
+.payment-intro{
+  text-align:center;
+  color:#d9e4f1;
+  margin-bottom:25px;
 }
+
+.payment-methods{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:15px;
+}
+
+.payment-card{
+  background:#102c52;
+  padding:20px;
+  border-radius:13px;
+}
+
+.payment-card h3{
+  color:#f2b705;
+  margin-bottom:10px;
+}
+
+.payment-card p{
+  word-break:break-word;
+}
+
+.payment-steps{
+  background:#fff;
+  color:#172033;
+  margin-top:25px;
+  padding:25px;
+  border-radius:13px;
+}
+
+.payment-steps h3{
+  color:#073763;
+  margin-bottom:10px;
+}
+
+.payment-steps ol{
+  padding-left:22px;
+}
+
+.payment-warning{
+  margin-top:18px;
+  padding:15px;
+  background:#fff8df;
+  color:#333;
+  border-radius:8px;
+}
+
+/* SOBRE */
+
+.about{
+  background:white;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.about h3{
+  color:#073763;
+  margin-bottom:10px;
+}
+
+/* WHATSAPP */
 
 .whatsapp{
   position:fixed;
@@ -215,24 +489,34 @@ header{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:30px;
+  font-size:28px;
   text-decoration:none;
-  box-shadow:0 4px 12px rgba(0,0,0,.3);
-  z-index:200;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);
+  z-index:2000;
 }
 
+/* FOOTER */
+
 footer{
-  background:#15181c;
-  color:#bbb;
+  background:#040d19;
+  color:#aeb8c5;
   text-align:center;
-  padding:25px 15px;
+  padding:30px 15px;
   font-size:14px;
+}
+
+footer strong{
+  color:#f2b705;
 }
 
 @media(max-width:600px){
 
+  .hero{
+    padding:50px 18px;
+  }
+
   .hero h1{
-    font-size:28px;
+    font-size:29px;
   }
 
   .hero p{
@@ -240,11 +524,15 @@ footer{
   }
 
   .container{
-    padding:25px 14px;
+    padding:35px 14px;
   }
 
   .section-title h2{
     font-size:24px;
+  }
+
+  .featured{
+    transform:none;
   }
 
 }
@@ -254,10 +542,12 @@ footer{
 
 <body>
 
+<!-- CABEÇALHO -->
+
 <header>
 
   <div class="logo">
-    Preparatório Angola
+    RUMO <span>A VAGA</span>
   </div>
 
   <div class="menu">
@@ -267,59 +557,88 @@ footer{
 </header>
 
 
+<!-- HERO -->
+
 <section class="hero">
 
-  <h1>Prepare-se para a sua oportunidade</h1>
+  <div class="tag">
+    🇦🇴 PREPARAÇÃO PARA CONCURSOS EM ANGOLA
+  </div>
+
+  <h1>
+    Prepare-se hoje para a sua oportunidade
+  </h1>
 
   <p>
-    Plataforma de preparação para concursos públicos em Angola,
-    com simulados, testes psicotécnicos e materiais de estudo.
+    Estude, pratique e acompanhe o seu progresso com
+    simulados, matérias de estudo e testes psicotécnicos.
   </p>
+
+  <div class="hero-buttons">
+
+    <a href="simulado.html" class="btn btn-gold">
+      📝 Começar Simulado
+    </a>
+
+    <a href="#areas" class="btn">
+      📚 Ver Áreas
+    </a>
+
+  </div>
 
 </section>
 
 
 <div class="container">
 
+  <!-- AVISO -->
+
   <div class="warning">
 
-    <strong>⚠️ Atenção:</strong>
+    <strong>⚠️ Informação importante</strong>
 
-    As candidaturas aos concursos públicos devem ser realizadas
-    exclusivamente através dos canais oficiais da entidade responsável.
-    Este site é uma plataforma independente de preparação.
+    <p>
+      O Rumo a Vaga é uma plataforma independente de preparação.
+      Não somos uma entidade governamental e não representamos
+      nenhum ministério ou órgão público.
+    </p>
+
+    <p>
+      As candidaturas devem ser realizadas exclusivamente através
+      dos canais oficiais da entidade responsável pelo concurso.
+    </p>
 
   </div>
 
+
+  <!-- POR QUE ESTUDAR -->
 
   <section>
 
     <div class="section-title">
 
-      <h2>O que oferecemos?</h2>
+      <h2>🎯 Prepare-se de forma organizada</h2>
 
       <p>
-        Prepare-se de forma prática e organizada.
+        Encontre conteúdos, exercícios e simulados num só lugar.
       </p>
 
     </div>
 
-
     <div class="cards">
-
 
       <div class="card">
 
         <div class="icon">📝</div>
 
-        <h3>Testes Modelo</h3>
+        <h3>Simulados</h3>
 
         <p>
-          Questões de preparação organizadas por áreas e
-          órgãos do Estado.
+          Pratique através de questões organizadas por áreas
+          e níveis de dificuldade.
         </p>
 
-        <a class="btn" href="simulado.html">
+        <a href="simulado.html" class="btn">
           Fazer Simulado
         </a>
 
@@ -330,15 +649,15 @@ footer{
 
         <div class="icon">🧠</div>
 
-        <h3>Testes Psicotécnicos</h3>
+        <h3>Psicotécnico</h3>
 
         <p>
-          Pratique raciocínio lógico, numérico, verbal,
-          atenção, memória e velocidade.
+          Exercícios de lógica, atenção, memória, velocidade,
+          raciocínio numérico, verbal e abstrato.
         </p>
 
-        <a class="btn" href="simulado.html">
-          Começar Teste
+        <a href="#psicotecnico" class="btn">
+          Estudar
         </a>
 
       </div>
@@ -348,15 +667,15 @@ footer{
 
         <div class="icon">📚</div>
 
-        <h3>Materiais de Estudo</h3>
+        <h3>Biblioteca</h3>
 
         <p>
-          Conteúdos de apoio para melhorar a sua preparação
+          Matérias organizadas para facilitar a preparação
           para diferentes concursos.
         </p>
 
-        <a class="btn" href="#planos">
-          Ver Materiais
+        <a href="#biblioteca" class="btn">
+          Ver matérias
         </a>
 
       </div>
@@ -366,19 +685,18 @@ footer{
 
         <div class="icon">🎯</div>
 
-        <h3>Simulados</h3>
+        <h3>Acompanhe o desempenho</h3>
 
         <p>
-          Responda às questões e veja automaticamente
-          a sua pontuação.
+          Faça exercícios e descubra quais áreas precisam
+          de mais treino.
         </p>
 
-        <a class="btn" href="simulado.html">
-          Testar Agora
+        <a href="simulado.html" class="btn">
+          Testar agora
         </a>
 
       </div>
-
 
     </div>
 
@@ -387,14 +705,16 @@ footer{
 </div>
 
 
-<section class="container">
+<!-- ÁREAS -->
+
+<section class="container" id="areas">
 
   <div class="section-title">
 
-    <h2>Áreas de Preparação</h2>
+    <h2>🏛️ Concursos por área</h2>
 
     <p>
-      Conteúdos que vamos desenvolver na plataforma.
+      Escolha a área em que pretende concentrar a sua preparação.
     </p>
 
   </div>
@@ -403,56 +723,134 @@ footer{
   <div class="cards">
 
 
-    <div class="card">
+    <div class="card area-card">
 
-      <div class="icon">👮</div>
+      <div class="area-image">👮</div>
 
-      <h3>MININT</h3>
+      <div class="area-content">
 
-      <p>
-        Preparação para testes psicotécnicos,
-        raciocínio e conhecimentos gerais.
-      </p>
+        <h3>MININT / Segurança</h3>
 
-      <a class="btn" href="simulado.html">
-        Praticar
-      </a>
+        <p>
+          Preparação em raciocínio, conhecimentos gerais,
+          atenção e testes psicotécnicos.
+        </p>
 
-    </div>
+        <a href="Polícia.html" class="btn">
+          Ver preparação
+        </a>
 
-
-    <div class="card">
-
-      <div class="icon">⚖️</div>
-
-      <h3>Justiça</h3>
-
-      <p>
-        Conteúdos e exercícios relacionados
-        com concursos da área da Justiça.
-      </p>
-
-      <a class="btn" href="simulado.html">
-        Praticar
-      </a>
+      </div>
 
     </div>
 
 
-    <div class="card">
+    <div class="card area-card">
 
-      <div class="icon">🏛️</div>
+      <div class="area-image">🎓</div>
 
-      <h3>Administração Pública</h3>
+      <div class="area-content">
 
-      <p>
-        Administração Pública, ética,
-        cultura geral e conhecimentos essenciais.
-      </p>
+        <h3>Educação</h3>
 
-      <a class="btn" href="simulado.html">
-        Praticar
-      </a>
+        <p>
+          Língua Portuguesa, pedagogia, didática,
+          avaliação e conhecimentos gerais.
+        </p>
+
+        <a href="#materias-educacao" class="btn">
+          Ver matérias
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="card area-card">
+
+      <div class="area-image">⚖️</div>
+
+      <div class="area-content">
+
+        <h3>Justiça / Tribunais</h3>
+
+        <p>
+          Organização judiciária, ética, conhecimentos
+          jurídicos e Administração Pública.
+        </p>
+
+        <a href="#materias-justica" class="btn">
+          Ver matérias
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="card area-card">
+
+      <div class="area-image">🏛️</div>
+
+      <div class="area-content">
+
+        <h3>Administração Pública</h3>
+
+        <p>
+          Administração, ética, atendimento, documentação
+          e conhecimentos gerais.
+        </p>
+
+        <a href="#materias-administracao" class="btn">
+          Ver matérias
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="card area-card">
+
+      <div class="area-image">🩺</div>
+
+      <div class="area-content">
+
+        <h3>Saúde</h3>
+
+        <p>
+          Preparação geral, saúde pública, ética,
+          prevenção e conhecimentos gerais.
+        </p>
+
+        <a href="#materias-saude" class="btn">
+          Ver matérias
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="card area-card">
+
+      <div class="area-image">💰</div>
+
+      <div class="area-content">
+
+        <h3>Finanças</h3>
+
+        <p>
+          Finanças públicas, orçamento, matemática,
+          contabilidade e administração.
+        </p>
+
+        <a href="#materias-financas" class="btn">
+          Ver matérias
+        </a>
+
+      </div>
 
     </div>
 
@@ -462,14 +860,292 @@ footer{
 </section>
 
 
+<!-- PSICOTÉCNICO -->
+
+<section class="container" id="psicotecnico">
+
+  <div class="psych">
+
+    <h2>🧠 Centro de Preparação Psicotécnica</h2>
+
+    <p>
+      Desenvolva diferentes capacidades através de exercícios
+      progressivos. Os testes são materiais de preparação
+      e não constituem provas oficiais.
+    </p>
+
+
+    <div class="levels">
+
+      <div class="level">
+        <strong>🟢 Nível Básico</strong>
+        Raciocínio e atenção
+      </div>
+
+      <div class="level">
+        <strong>🟡 Nível Intermédio</strong>
+        Maior velocidade
+      </div>
+
+      <div class="level">
+        <strong>🔴 Nível Avançado</strong>
+        Questões mais exigentes
+      </div>
+
+      <div class="level">
+        <strong>🔥 Intensivo</strong>
+        Simulados completos
+      </div>
+
+    </div>
+
+    <br>
+
+    <div style="text-align:center">
+
+      <a href="simulado.html" class="btn btn-gold">
+        🧠 Começar preparação
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TESTE GRATUITO -->
+
+<section class="container">
+
+  <div class="free-test">
+
+    <h2>🎁 Experimente gratuitamente</h2>
+
+    <p>
+      Antes de adquirir um plano, faça um teste gratuito
+      e conheça o nosso sistema de preparação.
+    </p>
+
+    <br>
+
+    <a href="simulado.html" class="btn">
+      Fazer teste gratuito
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- BIBLIOTECA -->
+
+<section class="container" id="biblioteca">
+
+  <div class="section-title">
+
+    <h2>📚 Biblioteca de matérias</h2>
+
+    <p>
+      Conteúdos organizados para diferentes áreas de preparação.
+    </p>
+
+  </div>
+
+
+  <div class="library">
+
+
+    <div class="library-item">
+
+      <strong>🇦🇴 Conhecimentos Gerais</strong>
+
+      <ul class="subject-list">
+        <li>Cultura geral</li>
+        <li>Atualidades</li>
+        <li>Cidadania</li>
+        <li>Constituição</li>
+        <li>História de Angola</li>
+      </ul>
+
+    </div>
+
+
+    <div class="library-item">
+
+      <strong>🧠 Raciocínio</strong>
+
+      <ul class="subject-list">
+        <li>Raciocínio lógico</li>
+        <li>Raciocínio numérico</li>
+        <li>Raciocínio verbal</li>
+        <li>Sequências</li>
+        <li>Problemas matemáticos</li>
+      </ul>
+
+    </div>
+
+
+    <div class="library-item">
+
+      <strong>👁️ Atenção e Memória</strong>
+
+      <ul class="subject-list">
+        <li>Atenção concentrada</li>
+        <li>Memória visual</li>
+        <li>Memória numérica</li>
+        <li>Precisão</li>
+        <li>Velocidade</li>
+      </ul>
+
+    </div>
+
+
+    <div class="library-item" id="materias-educacao">
+
+      <strong>🎓 Educação</strong>
+
+      <ul class="subject-list">
+        <li>Língua Portuguesa</li>
+        <li>Pedagogia</li>
+        <li>Didática</li>
+        <li>Andragogia</li>
+        <li>Avaliação da aprendizagem</li>
+        <li>Ética profissional</li>
+      </ul>
+
+    </div>
+
+
+    <div class="library-item" id="materias-justica">
+
+      <strong>⚖️ Justiça</strong>
+
+      <ul class="subject-list">
+        <li>Organização judiciária</li>
+        <li>Ética e deontologia</li>
+        <li>Noções de Direito Constitucional</li>
+        <li>Noções de Direito Administrativo</li>
+        <li>Direitos e deveres</li>
+        <li>Administração Pública</li>
+      </ul>
+
+    </div>
+
+
+    <div class="library-item" id="materias-administracao">
+
+      <strong>🏛️ Administração Pública</strong>
+
+      <ul class="subject-list">
+        <li>Princípios administrativos</li>
+        <li>Organização administrativa</li>
+        <li>Ética</li>
+        <li>Atendimento ao público</li>
+        <li>Gestão administrativa</li>
+        <li>Arquivo e documentação</li>
+      </ul>
+
+    </div>
+
+
+    <div class="library-item" id="materias-saude">
+
+      <strong>🩺 Saúde</strong>
+
+      <ul class="subject-list">
+        <li>Saúde pública</li>
+        <li>Higiene e prevenção</li>
+        <li>Primeiros socorros</li>
+        <li>Ética profissional</li>
+        <li>Conhecimentos gerais</li>
+      </ul>
+
+    </div>
+
+
+    <div class="library-item" id="materias-financas">
+
+      <strong>💰 Finanças</strong>
+
+      <ul class="subject-list">
+        <li>Finanças públicas</li>
+        <li>Orçamento público</li>
+        <li>Contabilidade básica</li>
+        <li>Economia básica</li>
+        <li>Matemática</li>
+        <li>Excel</li>
+      </ul>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- OPORTUNIDADES -->
+
+<section class="container">
+
+  <div class="section-title">
+
+    <h2>📢 Concursos e oportunidades</h2>
+
+    <p>
+      Área preparada para apresentar oportunidades verificadas.
+    </p>
+
+  </div>
+
+
+  <div class="opportunity">
+
+    <span class="status">
+      INFORMAÇÃO
+    </span>
+
+    <h3>🔎 Consulte sempre as fontes oficiais</h3>
+
+    <p>
+      Antes de candidatar-se a qualquer concurso,
+      confirme o edital, requisitos, prazo e canal oficial
+      de candidatura da entidade responsável.
+    </p>
+
+  </div>
+
+
+  <div class="opportunity">
+
+    <span class="status">
+      EM DESENVOLVIMENTO
+    </span>
+
+    <h3>📢 Central de oportunidades</h3>
+
+    <p>
+      Esta área será utilizada para organizar concursos,
+      vagas e outras oportunidades encontradas em fontes
+      oficiais.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- PLANOS -->
+
 <section class="container" id="planos">
 
   <div class="section-title">
 
-    <h2>Planos de Acesso</h2>
+    <h2>⭐ Preparação Premium</h2>
 
     <p>
-      Escolha o período que melhor se adapta à sua preparação.
+      Escolha o período de acesso que melhor se adapta à sua preparação.
     </p>
 
   </div>
@@ -481,7 +1157,7 @@ footer{
     <div class="plan">
 
       <div class="plan-header">
-        ⚡ Plano 1 Hora
+        ⚡ 1 Hora
       </div>
 
       <div class="plan-body">
@@ -490,12 +1166,12 @@ footer{
           500 Kz
         </div>
 
-        <p>✓ Acesso aos simulados</p>
+        <p>✓ Simulados</p>
         <p>✓ Testes psicotécnicos</p>
-        <p>✓ Resultado automático</p>
+        <p>✓ Resultados</p>
 
-        <a class="btn" href="#pagamento">
-          Comprar Agora
+        <a href="#pagamento" class="btn">
+          Comprar
         </a>
 
       </div>
@@ -506,7 +1182,7 @@ footer{
     <div class="plan">
 
       <div class="plan-header">
-        📅 Plano 24 Horas
+        📅 24 Horas
       </div>
 
       <div class="plan-body">
@@ -517,10 +1193,10 @@ footer{
 
         <p>✓ Acesso por 24 horas</p>
         <p>✓ Simulados</p>
-        <p>✓ Testes psicotécnicos</p>
+        <p>✓ Psicotécnico</p>
 
-        <a class="btn" href="#pagamento">
-          Comprar Agora
+        <a href="#pagamento" class="btn">
+          Comprar
         </a>
 
       </div>
@@ -531,7 +1207,7 @@ footer{
     <div class="plan">
 
       <div class="plan-header">
-        📆 Plano 7 Dias
+        📆 7 Dias
       </div>
 
       <div class="plan-body">
@@ -541,11 +1217,11 @@ footer{
         </div>
 
         <p>✓ Acesso por 7 dias</p>
-        <p>✓ Todos os simulados</p>
-        <p>✓ Testes psicotécnicos</p>
+        <p>✓ Simulados completos</p>
+        <p>✓ Psicotécnico</p>
 
-        <a class="btn" href="#pagamento">
-          Comprar Agora
+        <a href="#pagamento" class="btn">
+          Comprar
         </a>
 
       </div>
@@ -556,7 +1232,7 @@ footer{
     <div class="plan featured">
 
       <div class="plan-header">
-        🏆 Plano Mensal
+        🏆 30 Dias
       </div>
 
       <div class="plan-body">
@@ -566,11 +1242,12 @@ footer{
         </div>
 
         <p>✓ Acesso por 30 dias</p>
-        <p>✓ Todos os recursos premium</p>
-        <p>✓ Suporte prioritário</p>
+        <p>✓ Conteúdos Premium</p>
+        <p>✓ Todos os simulados</p>
+        <p>✓ Suporte</p>
 
-        <a class="btn" href="#pagamento">
-          Comprar Agora
+        <a href="#pagamento" class="btn btn-gold">
+          Comprar
         </a>
 
       </div>
@@ -583,42 +1260,216 @@ footer{
 </section>
 
 
+<!-- PAGAMENTO -->
+
 <section class="payment" id="pagamento">
 
-  <h2>💳 Como adquirir o acesso</h2>
+  <div class="payment-box">
 
-  <p>
-    Escolha o seu plano e siga as instruções de pagamento.
-  </p>
+    <h2>💳 Pagamento e ativação</h2>
 
-  <p>
-    Após o pagamento, envie o comprovativo através
-    do nosso contacto para ativação do acesso.
-  </p>
+    <p class="payment-intro">
+      Escolha o seu plano, faça o pagamento e envie o comprovativo
+      para solicitar a ativação do acesso.
+    </p>
 
-  <p>
-    <strong>Em breve teremos ativação automática.</strong>
-  </p>
+
+    <div class="payment-methods">
+
+
+      <div class="payment-card">
+
+        <h3>🏦 Banco Atlântico</h3>
+
+        <p>
+          <strong>IBAN:</strong><br>
+          AO06005500005565864710171
+        </p>
+
+      </div>
+
+
+      <div class="payment-card">
+
+        <h3>📱 Express</h3>
+
+        <p>
+          <strong>Número:</strong><br>
+          931 618 049
+        </p>
+
+      </div>
+
+
+      <div class="payment-card">
+
+        <h3>📲 WhatsApp</h3>
+
+        <p>
+          <strong>931 618 049</strong>
+        </p>
+
+      </div>
+
+
+      <div class="payment-card">
+
+        <h3>📧 E-mail</h3>
+
+        <p>
+          pintodossantosminzael@gmail.com
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <div class="payment-steps">
+
+      <h3>Como ativar o seu acesso</h3>
+
+      <ol>
+
+        <li>Escolha um dos planos disponíveis.</li>
+
+        <li>Faça o pagamento através do IBAN ou Express.</li>
+
+        <li>Guarde o comprovativo da operação.</li>
+
+        <li>Envie o comprovativo pelo WhatsApp ou e-mail.</li>
+
+        <li>Aguarde a confirmação e ativação do acesso.</li>
+
+      </ol>
+
+
+      <div class="payment-warning">
+
+        <strong>⚠️ Atenção:</strong>
+
+        A ativação depende da confirmação do pagamento.
+        Não envie a sua palavra-passe ou outros dados pessoais
+        desnecessários juntamente com o comprovativo.
+
+      </div>
+
+    </div>
+
+
+    <br>
+
+    <div style="text-align:center">
+
+      <a
+        href="https://wa.me/244931618049"
+        target="_blank"
+        class="btn btn-gold">
+        📲 Enviar comprovativo pelo WhatsApp
+      </a>
+
+    </div>
+
+  </div>
 
 </section>
 
 
+<!-- SOBRE -->
+
+<section class="container">
+
+  <div class="section-title">
+
+    <h2>ℹ️ Sobre o Rumo a Vaga</h2>
+
+  </div>
+
+
+  <div class="about">
+
+    <h3>Uma plataforma independente de preparação</h3>
+
+    <p>
+      O Rumo a Vaga foi pensado para ajudar candidatos a organizar
+      os seus estudos através de matérias, exercícios, simulados
+      e testes de preparação.
+    </p>
+
+    <br>
+
+    <p>
+      A plataforma não realiza concursos públicos nem representa
+      oficialmente ministérios ou outras entidades públicas.
+    </p>
+
+    <br>
+
+    <p>
+      Os conteúdos de preparação devem ser utilizados como apoio
+      aos estudos. Sempre que existir um concurso específico,
+      o candidato deve consultar o edital e as informações
+      divulgadas pelos canais oficiais.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACTO -->
+
+<section class="container">
+
+  <div class="free-test">
+
+    <h2>📞 Precisa de ajuda?</h2>
+
+    <p>
+      Entre em contacto através do WhatsApp ou e-mail.
+    </p>
+
+    <br>
+
+    <a
+      href="https://wa.me/244931618049"
+      target="_blank"
+      class="btn">
+      WhatsApp
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- RODAPÉ -->
+
 <footer>
 
   <p>
-    © 2026 Preparatório Angola
+    <strong>RUMO A VAGA 🇦🇴</strong>
   </p>
 
   <p>
-    Plataforma independente de preparação para concursos públicos.
+    Plataforma independente de preparação para concursos.
+  </p>
+
+  <br>
+
+  <p>
+    © 2026 Rumo a Vaga — Todos os direitos reservados.
   </p>
 
 </footer>
 
 
+<!-- WHATSAPP FLUTUANTE -->
+
 <a
   class="whatsapp"
-  href="https://wa.me/244000000000"
+  href="https://wa.me/244931618049"
   target="_blank"
   aria-label="WhatsApp">
   ☎
